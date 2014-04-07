@@ -44,6 +44,13 @@
 		</plugins>
 	</build>
 
+	<scm>
+		<connection>scm:git:git://github.com/fiji/Fiji_Updater</connection>
+		<developerConnection>scm:git:git@github.com:fiji/Fiji_Updater</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/fiji/Fiji_Updater</url>
+	</scm>
+
 	<repositories>
 		<!-- NB: for project parent, in case of partial checkout -->
 		<repository>
