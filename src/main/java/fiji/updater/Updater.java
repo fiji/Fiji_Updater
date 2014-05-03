@@ -1,5 +1,8 @@
 package fiji.updater;
 
+import ij.IJ;
+import ij.plugin.PlugIn;
+
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Method;
@@ -7,9 +10,6 @@ import java.net.URL;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-
-import ij.IJ;
-import ij.plugin.PlugIn;
 
 public class Updater implements PlugIn {
 	public final static String UPDATER_CLASS_NAME = "imagej.updater.gui.ImageJUpdater";
