@@ -1,5 +1,8 @@
 package fiji.updater;
 
+import ij.IJ;
+import ij.plugin.PlugIn;
+
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Method;
@@ -8,12 +11,11 @@ import java.net.URL;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-import ij.IJ;
-import ij.plugin.PlugIn;
-
 public class Updater implements PlugIn {
-	public final static String UPDATER_CLASS_NAME = "imagej.updater.gui.ImageJUpdater";
-	public final static String UPTODATE_CLASS_NAME = "imagej.updater.core.UpToDate";
+	public final static String UPDATER_CLASS_NAME = "net.imagej.ui.swing.updater.ImageJUpdater";
+	public final static String UPTODATE_CLASS_NAME = "net.imagej.updater.UpToDate";
+	public final static String OBSOLETE_UPDATER_CLASS_NAME = "imagej.updater.gui.ImageJUpdater";
+	public final static String OBSOLETE_UPTODATE_CLASS_NAME = "imagej.updater.core.UpToDate";
 	public final static String REMOTE_URL = "http://update.imagej.net/bootstrap.js";
 	public final static String RHINO_CLASS_NAME = "org.mozilla.javascript.Context";
 
@@ -24,9 +26,16 @@ public class Updater implements PlugIn {
 		}
 
 		try {
-			@SuppressWarnings("unchecked")
-			final Class<Runnable> runnable = (Class<Runnable>) IJ.getClassLoader().loadClass(UPDATER_CLASS_NAME);
-			runnable.newInstance().run();
+			try {
+				IJ2Updater.run();
+			}
+			catch (Throwable t) {
+				t.printStackTrace();
+				@SuppressWarnings("unchecked")
+				final Class<Runnable> runnable = (Class<Runnable>)
+					IJ.getClassLoader().loadClass(OBSOLETE_UPDATER_CLASS_NAME);
+				runnable.newInstance().run();
+			}
 		} catch (Throwable t) {
 			t.printStackTrace();
 			runRemote();
@@ -35,13 +44,21 @@ public class Updater implements PlugIn {
 
 	private void check() {
 		try {
-			final Class<?> clazz = IJ.getClassLoader().loadClass(UPTODATE_CLASS_NAME);
-			final Method check = clazz.getMethod("check");
-			final Object result = check.invoke(null);
-			if (result != null && "UPDATEABLE".equals(result.toString())) {
-				if (IJ.showMessageWithCancel("Updates available",
-						"There are updates available. Run the updater?")) {
-					run("");
+			try {
+				IJ2Updater.newCheck();
+				return;
+			}
+			catch (Throwable t) {
+				t.printStackTrace();
+				final Class<?> clazz =
+						IJ.getClassLoader().loadClass(OBSOLETE_UPTODATE_CLASS_NAME);
+				final Method check = clazz.getMethod("check");
+				final Object result = check.invoke(null);
+				if (result != null && "UPDATEABLE".equals(result.toString())) {
+					if (IJ.showMessageWithCancel("Updates available",
+							"There are updates available. Run the updater?")) {
+						run("");
+					}
 				}
 			}
 		} catch (Throwable t) {
