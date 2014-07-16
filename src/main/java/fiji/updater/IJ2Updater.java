@@ -7,11 +7,12 @@ import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import net.imagej.ui.swing.updater.ImageJUpdater;
+import net.imagej.updater.PromptUserToUpdate;
 import net.imagej.updater.UpToDate;
-import net.imagej.updater.UpdatesAvailable;
 import net.imagej.updater.UpToDate.Result;
 
 import org.scijava.Context;
+import org.scijava.command.Command;
 import org.scijava.command.CommandService;
 import org.xml.sax.SAXException;
 
@@ -44,7 +45,21 @@ class IJ2Updater {
 					Context.class.getName(), "");
 			final CommandService commandService = context
 					.getService(CommandService.class);
-			commandService.run(UpdatesAvailable.class, true);
+			try {
+				commandService.run(PromptUserToUpdate.class, true);
+			}
+			catch (final Throwable t) {
+				t.printStackTrace();
+				try {
+					@SuppressWarnings("unchecked")
+					final Class<? extends Command> obsolete = (Class<? extends Command>)
+						Class.forName("net.imagej.updater.UpdatesAvailable");
+					commandService.run(obsolete, true);
+				}
+				catch (final Throwable t2) {
+					t2.printStackTrace();
+				}
+			}
 			break;
 		case PROXY_NEEDS_AUTHENTICATION:
 			throw new RuntimeException(
