@@ -17,10 +17,6 @@
 	<name>plugins/Fiji_Updater.jar</name>
 	<description></description>
 
-	<properties>
-		<scijava-common.version>2.18.1</scijava-common.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>net.imagej</groupId>
@@ -29,8 +25,6 @@
 		<dependency>
 			<groupId>net.imagej</groupId>
 			<artifactId>imagej-ui-swing</artifactId>
-			<!-- TODO: once pom-fiji is based on pom-imagej, we do not need this any longer -->
-			<version>0.1.0</version>
 		</dependency>
 	</dependencies>
 
