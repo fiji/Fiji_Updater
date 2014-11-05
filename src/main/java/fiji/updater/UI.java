@@ -1,5 +1,7 @@
 package fiji.updater;
 
+import ij.IJ;
+
 /**
  * User interface abstraction of the ImageJ Updater adapter.
  * 
