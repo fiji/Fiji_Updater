@@ -29,6 +29,10 @@
 		<url>http://jenkins.imagej.net/job/Fiji_Updater/</url>
 	</ciManagement>
 
+	<properties>
+		<main-class>fiji.updater.Main</main-class>
+	</properties>
+
 	<repositories>
 		<!-- NB: for project parent -->
 		<repository>
@@ -56,7 +60,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>fiji.updater.Main</mainClass>
+							<mainClass>${main-class}</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
