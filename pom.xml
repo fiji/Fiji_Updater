@@ -17,6 +17,8 @@
 
 	<name>plugins/Fiji_Updater.jar</name>
 	<description></description>
+	<url>http://imagej.net/Updater</url>
+	<inceptionYear>2008</inceptionYear>
 
 	<scm>
 		<connection>scm:git:git://github.com/fiji/Fiji_Updater</connection>
