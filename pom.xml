@@ -20,6 +20,47 @@
 	<url>http://imagej.net/Updater</url>
 	<inceptionYear>2008</inceptionYear>
 
+	<developers>
+		<developer>
+			<id>ctrueden</id>
+			<name>Curtis Rueden</name>
+			<url>http://imagej.net/User:Rueden</url>
+			<roles>
+				<role>maintainer</role>
+			</roles>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>Johannes Schindelin</name>
+			<url>http://imagej.net/User:Schindelin</url>
+			<roles><role>founder</role></roles>
+			<properties><id>dscho</id></properties>
+		</contributor>
+		<contributor>
+			<name>Yap Chin Kiet (Google Summer of Code 2009)</name>
+		</contributor>
+		<contributor>
+			<name>Albert Cardona</name>
+			<url>http://imagej.net/User:Albertcardona</url>
+			<properties><id>acardona</id></properties>
+		</contributor>
+		<contributor>
+			<name>Mark Longair</name>
+			<url>http://imagej.net/User:Mark</url>
+			<properties><id>mhl</id></properties>
+		</contributor>
+		<contributor>
+			<name>Jarek Sacha</name>
+			<url>http://imagej.net/User:Jpsacha</url>
+		</contributor>
+		<contributor>
+			<name>Mark Hiner</name>
+			<url>http://imagej.net/User:Hinerm</url>
+			<properties><id>hinerm</id></properties>
+		</contributor>
+	</contributors>
+
 	<scm>
 		<connection>scm:git:git://github.com/fiji/Fiji_Updater</connection>
 		<developerConnection>scm:git:git@github.com:fiji/Fiji_Updater</developerConnection>
