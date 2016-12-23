@@ -35,6 +35,7 @@
 
 	<properties>
 		<main-class>fiji.updater.Main</main-class>
+		<scijava.obsolete>true</scijava.obsolete>
 	</properties>
 
 	<repositories>
